@@ -6,7 +6,7 @@ import logo from '~/assets/logo.png';
 import Background from '~/components/Background'; 
 import { Container, Form, FormInput, SubmitButton, SignLinkText, SignLink } from './styles';
 
-const SignIn = () => {
+const SignIn = ({ navigation }) => {
   return (
   <Background>
     <Container>
@@ -24,11 +24,11 @@ const SignIn = () => {
           secureTextEntry
           placeholder="Sua senha secreta"
         />
-        <SubmitButton OnPress={() => {}}>
+        <SubmitButton onPress={() => console.log('tester')}>
           Acessar
         </SubmitButton>
       </Form>
-      <SignLink OnPress={() => {}}>
+      <SignLink onPress={() => navigation.navigate('SignUp')}>
         <SignLinkText>Criar conta gratuita</SignLinkText> 
       </SignLink>
     </Container>

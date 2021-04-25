@@ -1,16 +1,21 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Image } from 'react-native';
+import { useDispatch } from 'react-redux';
 
 import logo from '~/assets/logo.png';
 
 import Background from '~/components/Background'; 
+import { SignInRequest } from '~/store/modules/auth/actions';
 import { Container, Form, FormInput, SubmitButton, SignLinkText, SignLink } from './styles';
 
 const SignIn = ({ navigation }) => {
+  const dispatch = useDispatch();
   const passwordRef = useRef();
 
+  const [email, setEmail ] = useState('');
+  const [password, setPassword ] = useState('');
   function handleSubmit(){
-
+    dispatch(SignInRequest(email, password));
   }
 
   return (
@@ -26,6 +31,8 @@ const SignIn = ({ navigation }) => {
           placeholder="Digite seu E-mail"
           returnKeyType="next"
           onSubmitEditing={() => passwordRef.current.focus()}
+          value={email}
+          onChangeText={setEmail}
         />
         <FormInput 
           icon="lock-outline"
@@ -34,6 +41,8 @@ const SignIn = ({ navigation }) => {
           ref={passwordRef}
           returnKeyType="send"
           onSubmitEditing={handleSubmit}
+          value={password}
+          onChangeText={setPassword}
         />
         <SubmitButton onPress={handleSubmit}>
           Acessar
